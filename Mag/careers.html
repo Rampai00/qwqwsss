@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramakhula HR | Careers - Join Our Team in Lesotho</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+        header { background: #ffffff; box-shadow: 0 2px 12px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 100; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; }
+        .logo h1 { font-size: 1.6rem; font-weight: 700; color: #1a5f5e; }
+        .logo span { font-weight: 400; font-size: 0.8rem; color: #5a6e7c; display: block; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 500; color: #2c3e50; transition: 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: #1a5f5e; }
+        .nav-links a.active { border-bottom: 2px solid #1a5f5e; padding-bottom: 4px; }
+        .menu-toggle { display: none; font-size: 1.6rem; cursor: pointer; }
+        .section-title { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; position: relative; display: inline-block; }
+        .section-title:after { content: ''; position: absolute; bottom: -10px; left: 0; width: 50px; height: 3px; background: #1a5f5e; }
+        .job-listings { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+        .job-card { background: white; border-radius: 20px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border: 1px solid #e2e8f0; transition: 0.2s; }
+        .job-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+        .job-info h3 { font-size: 1.2rem; margin-bottom: 0.25rem; }
+        .job-info p { color: #5a6e7c; font-size: 0.9rem; }
+        .job-tag { background: #e6f4f1; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; color: #1a5f5e; display: inline-block; margin-top: 0.5rem; }
+        .apply-btn { background: #1a5f5e; color: white; padding: 0.5rem 1.5rem; border-radius: 40px; text-decoration: none; font-weight: 500; font-size: 0.9rem; cursor: pointer; border: none; }
+        .recruitment-banner { background: linear-gradient(135deg, #1a5f5e, #0f4544); color: white; padding: 2rem; border-radius: 28px; margin: 2rem 0; text-align: center; }
+        
+        /* CV Upload & Browse Section */
+        .cv-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+        .cv-card { background: white; border-radius: 28px; padding: 2rem; border: 1px solid #e2e8f0; }
+        .cv-card h3 { margin-bottom: 1rem; color: #1a5f5e; }
+        .upload-area { border: 2px dashed #cbd5e1; border-radius: 20px; padding: 2rem; text-align: center; margin: 1rem 0; transition: 0.2s; cursor: pointer; }
+        .upload-area:hover { border-color: #1a5f5e; background: #f8fafc; }
+        .upload-area i { font-size: 2.5rem; color: #1a5f5e; margin-bottom: 0.5rem; }
+        input[type="file"] { display: none; }
+        .cv-list { max-height: 300px; overflow-y: auto; margin-top: 1rem; }
+        .cv-item { background: #f1f5f9; padding: 0.8rem; border-radius: 12px; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .cv-item a { color: #1a5f5e; text-decoration: none; font-weight: 500; }
+        .cv-item button { background: #ef4444; color: white; border: none; padding: 0.2rem 0.8rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; }
+        .message { padding: 0.5rem; border-radius: 10px; margin-top: 0.5rem; display: none; }
+        .message.success { background: #dcfce7; color: #166534; display: block; }
+        .message.error { background: #fee2e2; color: #991b1b; display: block; }
+        
+        footer { background: #0f2c2a; color: #cddfe6; padding: 3rem 0 1.5rem; margin-top: 3rem; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+        .footer-copy { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #2c4a48; }
+        @media (max-width: 800px) { .menu-toggle { display: block; } .nav-links { display: none; flex-direction: column; width: 100%; background: white; } .nav-links.show { display: flex; } .container { padding: 0 20px; } .cv-section { grid-template-columns: 1fr; } .job-card { flex-direction: column; gap: 1rem; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"><h1>Ramakhula HR <span>Lesotho Employee Experience Portal</span></h1></div>
+            <div class="menu-toggle" id="mobileMenu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="navList">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="culture.html">Company Culture</a></li>
+                <li><a href="careers.html" class="active">Careers</a></li>
+                <li><a href="benefits.html">Benefits</a></li>
+                <li><a href="training.html">Training & Development</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h1 class="section-title">Join Our Team in Lesotho</h1>
+        <p style="font-size: 1.1rem; margin-bottom: 1rem;">We're looking for passionate Basotho talent to help us build the future of work.</p>
+        
+        <div class="recruitment-banner">
+            <h2>🇱🇸 Be part of Lesotho's growing workforce</h2>
+            <p>Upload your CV below and our recruitment team will reach out within 5 business days.</p>
+        </div>
+
+        <!-- CV Upload & Browse Section -->
+        <div class="cv-section">
+            <div class="cv-card">
+                <h3><i class="fas fa-cloud-upload-alt"></i> Upload Your CV</h3>
+                <p>Upload your CV (PDF or DOC/DOCX) to be considered for current and future opportunities.</p>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-file-word"></i>
+                    <p>Click to browse or drag & drop</p>
+                    <small>Supported: PDF, DOC, DOCX (Max 5MB)</small>
+                    <input type="file" id="cvFile" accept=".pdf,.doc,.docx">
+                </div>
+                <div id="uploadMessage" class="message"></div>
+                <div id="applicantName" style="margin-top: 1rem;">
+                    <input type="text" id="applicantFullName" placeholder="Your full name" style="width: 100%; padding: 0.8rem; border-radius: 40px; border: 1px solid #e2e8f0; margin-top: 0.5rem;">
+                    <button id="submitCVBtn" style="margin-top: 0.5rem; background: #1a5f5e; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 40px; cursor: pointer; width: 100%;">Submit CV</button>
+                </div>
+            </div>
+            
+            <div class="cv-card">
+                <h3><i class="fas fa-search"></i> Browse Submitted CVs</h3>
+                <p>Recruitment team - view all uploaded CVs</p>
+                <div id="cvListContainer" class="cv-list">
+                    <!-- CV list will appear here -->
+                    <p style="color: #94a3b8; text-align: center;">No CVs uploaded yet</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Current Job Vacancies</h2>
+        <div class="job-listings">
+            <div class="job-card"><div class="job-info"><h3>Human Resources Officer</h3><p>📍 Maseru | Full-time</p><span class="job-tag">HR & Administration</span></div><button class="apply-btn" onclick="alert('Please upload your CV in the section above to apply for this position.')">Apply with CV →</button></div>
+            <div class="job-card"><div class="job-info"><h3>IT Support Specialist</h3><p>📍 Maseru | Full-time</p><span class="job-tag">Information Technology</span></div><button class="apply-btn" onclick="alert('Please upload your CV in the section above to apply for this position.')">Apply with CV →</button></div>
+            <div class="job-card"><div class="job-info"><h3>Finance & Accounts Assistant</h3><p>📍 Leribe | Full-time</p><span class="job-tag">Finance</span></div><button class="apply-btn" onclick="alert('Please upload your CV in the section above to apply for this position.')">Apply with CV →</button></div>
+            <div class="job-card"><div class="job-info"><h3>Customer Service Representative</h3><p>📍 Butha-Buthe | Full-time</p><span class="job-tag">Customer Support</span></div><button class="apply-btn" onclick="alert('Please upload your CV in the section above to apply for this position.')">Apply with CV →</button></div>
+            <div class="job-card"><div class="job-info"><h3>Marketing Coordinator</h3><p>📍 Maseru | Hybrid</p><span class="job-tag">Marketing</span></div><button class="apply-btn" onclick="alert('Please upload your CV in the section above to apply for this position.')">Apply with CV →</button></div>
+            <div class="job-card"><div class="job-info"><h3>Data Entry Clerk</h3><p>📍 Mafeteng | Part-time</p><span class="job-tag">Administrative</span></div><button class="apply-btn" onclick="alert('Please upload your CV in the section above to apply for this position.')">Apply with CV →</button></div>
+        </div>
+
+        <div style="background: #f1f5f9; border-radius: 24px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
+            <p><i class="fas fa-envelope"></i> Questions? Contact our recruitment team at <strong>recruitment@ramakhula.co.ls</strong></p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content"><div><h3>Ramakhula HR</h3><p>Maseru, Lesotho</p></div><div><p><i class="fas fa-envelope"></i> hr@ramakhula.co.ls</p></div></div>
+        <div class="footer-copy"><p>© 2025 Ramakhula HR Portal — Join us, grow with us.</p></div>
+    </div>
+</footer>
+
+<script>
+    // CV Storage using localStorage
+    let cvs = JSON.parse(localStorage.getItem('Ramakhula_cvs') || '[]');
+    
+    function displayCVs() {
+        const container = document.getElementById('cvListContainer');
+        if (cvs.length === 0) {
+            container.innerHTML = '<p style="color: #94a3b8; text-align: center;">No CVs uploaded yet</p>';
+            return;
+        }
+        container.innerHTML = cvs.map((cv, index) => `
+            <div class="cv-item">
+                <div>
+                    <strong>${escapeHtml(cv.name)}</strong><br>
+                    <small>${cv.filename} (${(cv.size / 1024).toFixed(1)} KB)</small>
+                </div>
+                <div>
+                    <a href="${cv.dataURL}" download="${cv.filename}" style="margin-right: 0.5rem;"><i class="fas fa-download"></i></a>
+                    <button onclick="deleteCV(${index})"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    function deleteCV(index) {
+        cvs.splice(index, 1);
+        localStorage.setItem('Ramakhula_cvs', JSON.stringify(cvs));
+        displayCVs();
+        showMessage('CV removed successfully', 'success', 'uploadMessage');
+    }
+    
+    function showMessage(msg, type, elementId) {
+        const msgDiv = document.getElementById(elementId);
+        msgDiv.textContent = msg;
+        msgDiv.className = `message ${type}`;
+        setTimeout(() => {
+            msgDiv.className = 'message';
+        }, 3000);
+    }
+    
+    let selectedFile = null;
+    
+    document.getElementById('uploadArea').addEventListener('click', () => {
+        document.getElementById('cvFile').click();
+    });
+    
+    document.getElementById('cvFile').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            if (!validTypes.includes(file.type)) {
+                showMessage('Please upload PDF or DOC/DOCX files only', 'error', 'uploadMessage');
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                showMessage('File must be less than 5MB', 'error', 'uploadMessage');
+                return;
+            }
+            selectedFile = file;
+            showMessage(`Selected: ${file.name}`, 'success', 'uploadMessage');
+        }
+    });
+    
+    document.getElementById('submitCVBtn').addEventListener('click', () => {
+        const applicantName = document.getElementById('applicantFullName').value.trim();
+        if (!applicantName) {
+            showMessage('Please enter your full name', 'error', 'uploadMessage');
+            return;
+        }
+        if (!selectedFile) {
+            showMessage('Please select a CV file first', 'error', 'uploadMessage');
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const cvData = {
+                id: Date.now(),
+                name: applicantName,
+                filename: selectedFile.name,
+                size: selectedFile.size,
+                type: selectedFile.type,
+                dataURL: e.target.result,
+                date: new Date().toLocaleDateString()
+            };
+            cvs.push(cvData);
+            localStorage.setItem('Ramakhula_cvs', JSON.stringify(cvs));
+            displayCVs();
+            document.getElementById('applicantFullName').value = '';
+            document.getElementById('cvFile').value = '';
+            selectedFile = null;
+            showMessage('CV uploaded successfully! Our team will review your application.', 'success', 'uploadMessage');
+        };
+        reader.readAsDataURL(selectedFile);
+    });
+    
+    displayCVs();
+    
+    const toggle = document.getElementById('mobileMenu');
+    const nav = document.getElementById('navList');
+    toggle.addEventListener('click', () => nav.classList.toggle('show'));
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesotho HR Portal | People First - Employee Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.5; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+        
+        /* Header & Navigation */
+        header { background: #ffffff; box-shadow: 0 2px 12px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 100; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; }
+        .logo h1 { font-size: 1.6rem; font-weight: 700; color: #1a5f5e; }
+        .logo span { font-weight: 400; font-size: 0.8rem; color: #5a6e7c; display: block; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 500; color: #2c3e50; transition: 0.2s; font-size: 0.95rem; }
+        .nav-links a:hover, .nav-links a.active { color: #1a5f5e; }
+        .nav-links a.active { border-bottom: 2px solid #1a5f5e; padding-bottom: 4px; }
+        .menu-toggle { display: none; font-size: 1.6rem; cursor: pointer; color: #2c3e50; }
+        
+        /* Hero Section with Lesotho Theme */
+        .hero { background: linear-gradient(135deg, #e8f3f0 0%, #ffffff 100%); padding: 4rem 0; }
+        .hero-grid { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+        .hero-content { flex: 1; }
+        .hero-content h2 { font-size: 2.8rem; font-weight: 700; color: #1a5f5e; line-height: 1.2; }
+        .hero-content p { font-size: 1.1rem; margin: 1.2rem 0; color: #4a5b6e; }
+        .hero-image { flex: 1; text-align: center; }
+        .hero-image img { max-width: 100%; border-radius: 28px; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15); }
+        .btn-primary { background: #1a5f5e; color: white; padding: 0.8rem 2rem; border-radius: 40px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.2s; }
+        .btn-primary:hover { background: #0f4544; transform: translateY(-2px); }
+        
+        /* Quick Stats Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .stat-card { background: white; border-radius: 24px; padding: 1.5rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; }
+        .stat-card h3 { font-size: 2rem; color: #1a5f5e; }
+        
+        .section-title { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; position: relative; display: inline-block; }
+        .section-title:after { content: ''; position: absolute; bottom: -10px; left: 0; width: 50px; height: 3px; background: #1a5f5e; border-radius: 2px; }
+        
+        /* Staff Images Grid - Lesotho Team */
+        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .staff-card { text-align: center; background: white; border-radius: 24px; padding: 1.5rem; transition: 0.2s; border: 1px solid #eef2f6; }
+        .staff-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .staff-card h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+        
+        /* Quick Links */
+        .quick-links { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; justify-content: center; }
+        .quick-link { background: #f1f5f9; padding: 0.8rem 1.8rem; border-radius: 50px; text-decoration: none; color: #1a5f5e; font-weight: 500; transition: 0.2s; }
+        .quick-link:hover { background: #1a5f5e; color: white; }
+        
+        footer { background: #0f2c2a; color: #cddfe6; padding: 3rem 0 1.5rem; margin-top: 3rem; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+        .footer-copy { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #2c4a48; font-size: 0.85rem; }
+        
+        @media (max-width: 800px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: white; padding: 1rem 0; gap: 1rem; }
+            .nav-links.show { display: flex; }
+            .hero-content h2 { font-size: 2rem; }
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"><h1>Ramakhula HR <span>Lesotho Employee Experience Portal</span></h1></div>
+            <div class="menu-toggle" id="mobileMenu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="navList">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="culture.html">Company Culture</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="benefits.html">Benefits</a></li>
+                <li><a href="training.html">Training & Development</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h2>Khotso! Welcome to<br>Ramakhula HR Portal</h2>
+                    <p>Your gateway to career opportunities, employee resources, and professional growth in Lesotho. We're building a workplace where Basotho thrive.</p>
+                    <a href="careers.html" class="btn-primary">View Open Positions →</a>
+                </div>
+                <div class="hero-image">
+                    <img src="images/6.jpg" alt="Lesotho workplace">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card"><h3>450+</h3><p>Employees in Lesotho</p></div>
+            <div class="stat-card"><h3>92%</h3><p>Employee Satisfaction</p></div>
+            <div class="stat-card"><h3>5</h3><p>Offices Nationwide</p></div>
+            <div class="stat-card"><h3>15+</h3><p>Open Positions</p></div>
+        </div>
+
+        <h2 class="section-title">Meet Our Leadership Team</h2>
+        <div class="staff-grid">
+            <div class="staff-card"><img src="images/1.jpg" alt="Limakatso Ramakhula"><h4>Limakatso Ramakhula</h4><p>CEO</p></div>
+            <div class="staff-card"><img src="images/2.jpg" alt="Thabo Ntsane"><h4>Thabo Ntsane</h4><p>HR Director</p></div>
+            <div class="staff-card"><img src="images/3.jpg" alt="'Maseabata Rantšo"><h4>'Maseabata Rantšo</h4><p>Learning & Development</p></div>
+            <div class="staff-card"><img src="images/4.jpg" alt="Lekhooa Molapo"><h4>Lekhooa Molapo</h4><p>Employee Experience</p></div>
+        </div>
+
+        <div class="quick-links">
+            <a href="culture.html" class="quick-link"><i class="fas fa-heart"></i> Our Culture</a>
+            <a href="careers.html" class="quick-link"><i class="fas fa-briefcase"></i> Job Vacancies</a>
+            <a href="benefits.html" class="quick-link"><i class="fas fa-gift"></i> Benefits</a>
+            <a href="training.html" class="quick-link"><i class="fas fa-chalkboard-user"></i> Training</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div><h3>Ramakhula HR</h3><p>Maseru, Lesotho</p></div>
+            <div><p><i class="fas fa-envelope"></i> hr@ramakhula.co.ls</p><p><i class="fas fa-phone"></i> +266 2231 2345</p></div>
+        </div>
+        <div class="footer-copy"><p>© 2025 Ramakhula HR Portal — Empowering Basotho talent.</p></div>
+    </div>
+</footer>
+
+<script>
+    const toggle = document.getElementById('mobileMenu');
+    const nav = document.getElementById('navList');
+    toggle.addEventListener('click', () => nav.classList.toggle('show'));
+</script>
+</body>
+</html>
